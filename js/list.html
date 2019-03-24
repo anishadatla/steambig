@@ -10,7 +10,17 @@
             <h3 class="child"></h3>
             <h3 class="child"></h3>
         </div>
-      <script type="text/javascript" src="finaldata.json"></script>
-      <script type="text/javascript" src="main.js"></script>
+      <script>
+      var finaldata='[{"name": "white cheese", "ce1": "296", "ce2": "279"}, {"name": "processed or uncured cheese", "ce1": "654", "ce2": "375"}]';
+      function genList(){
+        var data1 = JSON.parse(finaldata);
+        var index = 0;
+        while(index != 4){
+            var list = document.getElementsByClassName("example")[0];
+            list.getElementsByClassName("child")[index].innerHTML = data1[index].name + "\n " + data1[index].ce1 + "\n " + data1[index].ce2;
+            index++;
+          }
+      }
+      </script>
     </body>
 </html>
