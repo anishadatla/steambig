@@ -4,9 +4,31 @@
         <title>Carbon Tracer</title>
     </head>
     <body>
-      <p id="demo"> Hello </p>
+
       Search: <input type="text" id="fname" onchange="myFunction()">
-      <script type="text/javascript" src="alldata.json"></script>
-      <script type="text/javascript" src="main.js"></script>
+      <div id="demo"></div>
+      <script>
+      function checkValues(obj, key){
+        for (var i in obj){
+          if(obj[i].name == key){
+            return i;
+          }
+        }
+        return -1;
+      }
+      var alldata ='[{"name": "soft drinks", "ce1": "284", "ce2": "143"},{"name": "soup", "ce1": "2", "ce2": "274"},{"name": "breads", "ce1": "625", "ce2": "50"}, {"name": "biscuits", "ce1": "33", "ce2": "216"}, {"name": "poultry", "ce1": "262", "ce2": "432"}, {"name": "milk", "ce1": "172", "ce2": "351"}, {"name": "white cheese", "ce1": "296", "ce2": "279"}, {"name": "processed or uncured cheese", "ce1": "654", "ce2": "375"}]';
+
+      function myFunction() {
+        var data1 = JSON.parse(alldata);
+      	var x = document.getElementById("fname");
+        var index = checkValues(data1,x.value.toLowerCase())
+        if(index != -1){
+      	  document.getElementById('demo').innerHTML = "<p>" + "<h2 id='name'>" + data1[index].name + "</h2>" + "<h4 class='ce'> Carbon Emmisons per Kg: " + data1[index].ce1 + "</h4></br>" +"<h4 class='ce'> Carbon Emmisons per Kcal: " + data1[index].ce2 + "</h4></br>" +"</p>";
+      	}
+      	else{
+      		document.getElementById('demo').innerHTML = "<p><h2> Data Not Found </h2></p>";
+      	}
+      }
+    </script>
     </body>
 </html>
